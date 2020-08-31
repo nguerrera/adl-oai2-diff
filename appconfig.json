@@ -1,6 +1,9 @@
 {
     "swagger": "2.0",
-    "info": {},
+    "info": {
+        "title": "(title)",
+        "version": "0000-00-00"
+    },
     "schemes": [
         "https"
     ],
@@ -34,13 +37,14 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader & KeyPage>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-KeyPage"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -60,16 +64,7 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/acceptDatetime"
                     },
                     {
                         "$ref": "#/parameters/acceptDatetime"
@@ -85,13 +80,14 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -111,16 +107,7 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/acceptDatetime"
                     },
                     {
                         "$ref": "#/parameters/acceptDatetime"
@@ -135,20 +122,21 @@
                         "$ref": "#/parameters/After"
                     },
                     {
-                        "$ref": "#/parameters/$Select"
+                        "$ref": "#/parameters/_Select"
                     }
                 ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader & Page<KeyValue>>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-Page-of-KeyValue"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -168,28 +156,13 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
                         "$ref": "#/parameters/acceptDatetime"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
-                    },
-                    {
                         "$ref": "#/parameters/key"
-                    },
-                    {
-                        "$ref": "#/parameters/key"
-                    },
-                    {
-                        "$ref": "#/parameters/label"
                     },
                     {
                         "$ref": "#/parameters/label"
@@ -198,20 +171,21 @@
                         "$ref": "#/parameters/After"
                     },
                     {
-                        "$ref": "#/parameters/$Select"
+                        "$ref": "#/parameters/_Select"
                     }
                 ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -231,12 +205,6 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
@@ -249,26 +217,27 @@
                         "$ref": "#/parameters/acceptDatetime"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "$ref": "#/parameters/key-0"
                     },
                     {
                         "$ref": "#/parameters/label"
                     },
                     {
-                        "$ref": "#/parameters/$Select"
+                        "$ref": "#/parameters/_Select"
                     }
                 ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<KeyValueHeaders & KeyValue>"
-                        }
+                            "$ref": "#/definitions/Ok-of-KeyValueHeaders-plus-KeyValue"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -286,16 +255,10 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/key-0"
                     },
                     {
                         "$ref": "#/parameters/label"
@@ -308,13 +271,14 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<KeyValueHeaders & KeyValue>"
-                        }
+                            "$ref": "#/definitions/Ok-of-KeyValueHeaders-plus-KeyValue"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -334,16 +298,7 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/ifMatch"
                     },
                     {
                         "$ref": "#/parameters/ifMatch"
@@ -352,16 +307,10 @@
                         "$ref": "#/parameters/ifNoneMatch"
                     },
                     {
-                        "$ref": "#/parameters/ifNoneMatch"
-                    },
-                    {
                         "$ref": "#/parameters/acceptDatetime"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
-                    },
-                    {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/key-0"
                     },
                     {
                         "$ref": "#/parameters/label"
@@ -371,13 +320,14 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader & LastModifiedHeader>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-LastModifiedHeader"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -398,16 +348,7 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/ifMatch"
                     },
                     {
                         "$ref": "#/parameters/ifMatch"
@@ -416,10 +357,7 @@
                         "$ref": "#/parameters/ifNoneMatch"
                     },
                     {
-                        "$ref": "#/parameters/ifNoneMatch"
-                    },
-                    {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/key-0"
                     },
                     {
                         "$ref": "#/parameters/label"
@@ -435,13 +373,14 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<KeyValueHeaders & KeyValue>"
-                        }
+                            "$ref": "#/definitions/Ok-of-KeyValueHeaders-plus-KeyValue"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -461,38 +400,30 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
                         "$ref": "#/parameters/acceptDatetime"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "$ref": "#/parameters/name-0"
                     },
                     {
-                        "$ref": "#/parameters/name"
-                    },
-                    {
-                        "$ref": "#/parameters/after"
+                        "$ref": "#/parameters/after-0"
                     }
                 ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader & LabelPage>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-LabelPage"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -512,41 +443,33 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
                         "$ref": "#/parameters/acceptDatetime"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "$ref": "#/parameters/name-0"
                     },
                     {
-                        "$ref": "#/parameters/name"
+                        "$ref": "#/parameters/after-0"
                     },
                     {
-                        "$ref": "#/parameters/after"
-                    },
-                    {
-                        "$ref": "#/parameters/$Select"
+                        "$ref": "#/parameters/_Select-0"
                     }
                 ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -564,25 +487,16 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/key-1"
                     },
                     {
-                        "$ref": "#/parameters/label"
-                    },
-                    {
-                        "$ref": "#/parameters/ifMatch"
+                        "$ref": "#/parameters/label-0"
                     },
                     {
                         "$ref": "#/parameters/ifMatch"
-                    },
-                    {
-                        "$ref": "#/parameters/ifNoneMatch"
                     },
                     {
                         "$ref": "#/parameters/ifNoneMatch"
@@ -592,13 +506,14 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader & KeyValue>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-KeyValue"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -614,25 +529,16 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/key-1"
                     },
                     {
-                        "$ref": "#/parameters/label"
-                    },
-                    {
-                        "$ref": "#/parameters/ifMatch"
+                        "$ref": "#/parameters/label-0"
                     },
                     {
                         "$ref": "#/parameters/ifMatch"
-                    },
-                    {
-                        "$ref": "#/parameters/ifNoneMatch"
                     },
                     {
                         "$ref": "#/parameters/ifNoneMatch"
@@ -642,13 +548,14 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader & KeyValue>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-KeyValue"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -668,41 +575,33 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
                     },
                     {
                         "$ref": "#/parameters/acceptDatetime"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "$ref": "#/parameters/_Select"
                     },
                     {
-                        "$ref": "#/parameters/$Select"
+                        "$ref": "#/parameters/label-1"
                     },
                     {
-                        "$ref": "#/parameters/label"
-                    },
-                    {
-                        "$ref": "#/parameters/key"
+                        "$ref": "#/parameters/key-2"
                     }
                 ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader & Page<KeyValue>>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-Page-of-KeyValue"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -722,16 +621,7 @@
                         "$ref": "#/parameters/apiVersion"
                     },
                     {
-                        "$ref": "#/parameters/apiVersion"
-                    },
-                    {
                         "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/syncToken"
-                    },
-                    {
-                        "$ref": "#/parameters/acceptDatetime"
                     },
                     {
                         "$ref": "#/parameters/acceptDatetime"
@@ -740,20 +630,21 @@
                         "$ref": "#/parameters/name"
                     },
                     {
-                        "$ref": "#/parameters/after"
+                        "$ref": "#/parameters/after-1"
                     }
                 ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<SyncTokenHeader>"
-                        }
+                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
+                            "$ref": "#/definitions/Error"
                         },
                         "description": "Azure App Configuration error object."
                     }
@@ -762,30 +653,24 @@
         }
     },
     "definitions": {
-        "Ok<SyncTokenHeader & KeyPage>": {
+        "Ok-of-SyncTokenHeader-plus-KeyPage": {
             "type": "object",
-            "required": [
-                "items",
-                "nextLink"
-            ],
             "properties": {
                 "items": {
-                    "$ref": "#/parameters/Key[]"
+                    "$ref": "#/definitions/Key-array"
                 },
                 "nextLink": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "items",
+                "nextLink"
+            ],
+            "x-adl-name": "Ok<SyncTokenHeader & KeyPage>"
         },
         "Error": {
             "type": "object",
-            "required": [
-                "type",
-                "title",
-                "name",
-                "detail",
-                "statusCode"
-            ],
             "properties": {
                 "type": {
                     "type": "string",
@@ -809,141 +694,160 @@
                     "description": "The HTTP status code that the error maps to."
                 }
             },
-            "description": "Azure App Configuration error object."
+            "description": "Azure App Configuration error object.",
+            "required": [
+                "type",
+                "title",
+                "name",
+                "detail",
+                "statusCode"
+            ]
         },
-        "Ok<SyncTokenHeader>": {
+        "Ok-of-SyncTokenHeader": {
             "type": "object",
-            "required": [],
-            "properties": {}
+            "properties": {},
+            "x-adl-name": "Ok<SyncTokenHeader>"
         },
-        "(unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type)[]": {
-            "type": "Array",
+        "key-or-label-or-content_type-or-value-or-last_modified-or-tags-array": {
+            "type": "array",
             "items": {
-                "$ref": "#/parameters/(unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type)"
-            }
+                "$ref": "#/definitions/key-or-label-or-content_type-or-value-or-last_modified-or-tags"
+            },
+            "x-adl-name": "key | label | content_type | value | last_modified | tags[]"
         },
-        "Ok<SyncTokenHeader & Page<KeyValue>>": {
-            "type": "object",
-            "required": [
-                "items",
-                "nextLink"
-            ],
-            "properties": {
-                "items": {
-                    "$ref": "#/parameters/KeyValue[]"
-                },
-                "nextLink": {
-                    "type": "string"
-                }
-            }
-        },
-        "Ok<KeyValueHeaders & KeyValue>": {
-            "type": "object",
-            "required": [
-                "key",
-                "tags",
-                "locked"
-            ],
-            "properties": {
-                "key": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "tags": {
-                    "$ref": "#/parameters/Map<string, string>"
-                },
-                "locked": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Ok<SyncTokenHeader & LastModifiedHeader>": {
-            "type": "object",
-            "required": [],
-            "properties": {}
-        },
-        "string[]": {
-            "type": "Array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "NoContent<(anonymous model)>": {
-            "type": "object",
-            "required": [],
-            "properties": {}
-        },
-        "Ok<SyncTokenHeader & LabelPage>": {
-            "type": "object",
-            "required": [
-                "items",
-                "nextLink"
-            ],
-            "properties": {
-                "items": {
-                    "$ref": "#/parameters/Label[]"
-                },
-                "nextLink": {
-                    "type": "string"
-                }
-            }
-        },
-        "(unnamed type)[]": {
-            "type": "Array",
-            "items": "name"
-        },
-        "Ok<SyncTokenHeader & KeyValue>": {
-            "type": "object",
-            "required": [
-                "key",
-                "tags",
-                "locked"
-            ],
-            "properties": {
-                "key": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "tags": {
-                    "$ref": "#/parameters/Map<string, string>"
-                },
-                "locked": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Key[]": {
-            "type": "Array",
-            "items": {
-                "$ref": "#/parameters/Key"
-            }
-        },
-        "(unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type)": {
-            "oneOf": [
+        "key-or-label-or-content_type-or-value-or-last_modified-or-tags": {
+            "type": "string",
+            "enum": [
                 "key",
                 "label",
                 "content_type",
                 "value",
                 "last_modified",
                 "tags"
-            ]
-        },
-        "KeyValue[]": {
-            "type": "Array",
-            "items": {
-                "$ref": "#/parameters/KeyValue"
-            }
-        },
-        "Map<string, string>": {
-            "type": "object",
-            "required": [
-                "k",
-                "v"
             ],
+            "x-adl-name": "key | label | content_type | value | last_modified | tags"
+        },
+        "Ok-of-SyncTokenHeader-plus-Page-of-KeyValue": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/definitions/KeyValue-array"
+                },
+                "nextLink": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "items",
+                "nextLink"
+            ],
+            "x-adl-name": "Ok<SyncTokenHeader & Page<KeyValue>>"
+        },
+        "Ok-of-KeyValueHeaders-plus-KeyValue": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/Map-of-string-and-string"
+                },
+                "locked": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "key",
+                "tags",
+                "locked"
+            ],
+            "x-adl-name": "Ok<KeyValueHeaders & KeyValue>"
+        },
+        "Ok-of-SyncTokenHeader-plus-LastModifiedHeader": {
+            "type": "object",
+            "properties": {},
+            "x-adl-name": "Ok<SyncTokenHeader & LastModifiedHeader>"
+        },
+        "string-array": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "x-adl-name": "string[]"
+        },
+        "NoContent-of-_anonymous_model_": {
+            "type": "object",
+            "properties": {},
+            "x-adl-name": "NoContent<(anonymous model)>"
+        },
+        "Ok-of-SyncTokenHeader-plus-LabelPage": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/definitions/Label-array"
+                },
+                "nextLink": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "items",
+                "nextLink"
+            ],
+            "x-adl-name": "Ok<SyncTokenHeader & LabelPage>"
+        },
+        "name-array": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "name"
+                ]
+            },
+            "x-adl-name": "name[]"
+        },
+        "Ok-of-SyncTokenHeader-plus-KeyValue": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/Map-of-string-and-string"
+                },
+                "locked": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "key",
+                "tags",
+                "locked"
+            ],
+            "x-adl-name": "Ok<SyncTokenHeader & KeyValue>"
+        },
+        "Key-array": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Key"
+            },
+            "x-adl-name": "Key[]"
+        },
+        "KeyValue-array": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/KeyValue"
+            },
+            "x-adl-name": "KeyValue[]"
+        },
+        "Map-of-string-and-string": {
+            "type": "object",
             "properties": {
                 "k": {
                     "type": "string"
@@ -951,32 +855,33 @@
                 "v": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "k",
+                "v"
+            ],
+            "x-adl-name": "Map<string, string>"
         },
-        "Label[]": {
-            "type": "Array",
+        "Label-array": {
+            "type": "array",
             "items": {
-                "$ref": "#/parameters/Label"
-            }
+                "$ref": "#/definitions/Label"
+            },
+            "x-adl-name": "Label[]"
         },
         "Key": {
             "type": "object",
-            "required": [
-                "key"
-            ],
             "properties": {
                 "key": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "key"
+            ]
         },
         "KeyValue": {
             "type": "object",
-            "required": [
-                "key",
-                "tags",
-                "locked"
-            ],
             "properties": {
                 "key": {
                     "type": "string"
@@ -985,132 +890,194 @@
                     "type": "string"
                 },
                 "tags": {
-                    "$ref": "#/parameters/Map<string, string>"
+                    "$ref": "#/definitions/Map-of-string-and-string"
                 },
                 "locked": {
                     "type": "boolean"
                 }
-            }
+            },
+            "required": [
+                "key",
+                "tags",
+                "locked"
+            ]
         },
         "Label": {
             "type": "object",
-            "required": [
-                "name"
-            ],
             "properties": {
                 "name": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "name"
+            ]
         }
     },
     "parameters": {
         "apiVersion": {
             "name": "apiVersion",
             "in": "query",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            }
+            "required": true,
+            "type": "string"
         },
         "syncToken": {
             "name": "syncToken",
             "in": "header",
-            "requred": false,
-            "schema": {
-                "type": "string"
-            },
-            "description": "Used to guarantee real-time consistency between requests."
+            "required": false,
+            "description": "Used to guarantee real-time consistency between requests.",
+            "type": "string"
         },
         "acceptDatetime": {
             "name": "acceptDatetime",
             "in": "header",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            }
+            "required": true,
+            "type": "string",
+            "format": "date"
         },
         "name": {
             "name": "name",
             "in": "query",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            }
+            "required": true,
+            "type": "string"
         },
         "after": {
             "name": "after",
-            "in": "query",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            }
+            "in": "header",
+            "required": true,
+            "type": "string"
         },
         "key": {
             "name": "key",
             "in": "query",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            },
-            "description": "A filter used to match keys."
+            "required": false,
+            "description": "A filter for the name of the returned keys.",
+            "type": "string"
         },
         "label": {
             "name": "label",
             "in": "query",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            },
-            "description": "A filter used to match labels"
+            "required": false,
+            "description": "A filter used to match labels",
+            "type": "string"
         },
         "After": {
             "name": "After",
             "in": "query",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            },
-            "description": "Instructs the server to return elements that appear after the element referred to by the specified token."
+            "required": true,
+            "description": "Instructs the server to return elements that appear after the element referred to by the specified token.",
+            "type": "string",
+            "format": "date"
         },
-        "$Select": {
+        "_Select": {
             "name": "$Select",
             "in": "query",
-            "requred": false,
-            "schema": {
-                "$ref": "#/parameters/(unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type) | (unnamed type)[]"
-            },
-            "description": "Used to select what fields are present in the returned resource(s)."
+            "required": false,
+            "description": "Used to select what fields are present in the returned resource(s).",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "key",
+                    "label",
+                    "content_type",
+                    "value",
+                    "last_modified",
+                    "tags"
+                ]
+            }
         },
         "ifMatch": {
             "name": "ifMatch",
             "in": "header",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            }
+            "required": true,
+            "type": "string"
         },
         "ifNoneMatch": {
             "name": "ifNoneMatch",
             "in": "header",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            }
+            "required": true,
+            "type": "string"
+        },
+        "key-0": {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "A filter for the name of the returned keys.",
+            "type": "string"
         },
         "contentType": {
             "name": "contentType",
             "in": "header",
-            "requred": true,
-            "schema": "application/json-patch+json"
+            "required": true,
+            "type": "string",
+            "enum": [
+                "application/json-patch+json"
+            ]
         },
         "jsonPatch": {
             "name": "jsonPatch",
             "in": "body",
-            "requred": true,
+            "required": true,
             "schema": {
-                "$ref": "#/parameters/string[]"
+                "$ref": "#/definitions/string-array"
             }
+        },
+        "name-0": {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+        },
+        "after-0": {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "type": "string"
+        },
+        "_Select-0": {
+            "name": "$Select",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "name"
+                ]
+            }
+        },
+        "key-1": {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "label-0": {
+            "name": "label",
+            "in": "query",
+            "required": true,
+            "type": "string"
+        },
+        "label-1": {
+            "name": "label",
+            "in": "query",
+            "required": true,
+            "description": "A filter used to match labels",
+            "type": "string"
+        },
+        "key-2": {
+            "name": "key",
+            "in": "query",
+            "required": true,
+            "description": "A filter used to match keys.",
+            "type": "string"
+        },
+        "after-1": {
+            "name": "after",
+            "in": "query",
+            "required": true,
+            "type": "string"
         }
     }
 }

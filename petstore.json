@@ -1,6 +1,9 @@
 {
     "swagger": "2.0",
-    "info": {},
+    "info": {
+        "title": "(title)",
+        "version": "0000-00-00"
+    },
     "schemes": [
         "https"
     ],
@@ -12,19 +15,25 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/petId"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<(anonymous model)>"
-                        }
+                            "$ref": "#/definitions/Ok-of-_anonymous_model_"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
-                        }
+                            "$ref": "#/definitions/Error"
+                        },
+                        "description": ""
                     }
                 }
             },
@@ -34,19 +43,25 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/petId"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<Pet>"
-                        }
+                            "$ref": "#/definitions/Ok-of-Pet"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
-                        }
+                            "$ref": "#/definitions/Error"
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -67,14 +82,16 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<Page<Pet>>"
-                        }
+                            "$ref": "#/definitions/Ok-of-Page-of-Pet"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
-                        }
+                            "$ref": "#/definitions/Error"
+                        },
+                        "description": ""
                     }
                 }
             },
@@ -94,14 +111,16 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<Pet>"
-                        }
+                            "$ref": "#/definitions/Ok-of-Pet"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
-                        }
+                            "$ref": "#/definitions/Error"
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -114,6 +133,9 @@
                 ],
                 "parameters": [
                     {
+                        "$ref": "#/parameters/petId-0"
+                    },
+                    {
                         "$ref": "#/parameters/nameFilter"
                     }
                 ],
@@ -121,31 +143,29 @@
                     "200": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Ok<Page<Toy>>"
-                        }
+                            "$ref": "#/definitions/Ok-of-Page-of-Toy"
+                        },
+                        "description": ""
                     },
                     "default": {
                         "headers": {},
                         "schema": {
-                            "$ref": "#/parameters/Error"
-                        }
+                            "$ref": "#/definitions/Error"
+                        },
+                        "description": ""
                     }
                 }
             }
         }
     },
     "definitions": {
-        "Ok<(anonymous model)>": {
+        "Ok-of-_anonymous_model_": {
             "type": "object",
-            "required": [],
-            "properties": {}
+            "properties": {},
+            "x-adl-name": "Ok<(anonymous model)>"
         },
         "Error": {
             "type": "object",
-            "required": [
-                "code",
-                "message"
-            ],
             "properties": {
                 "code": {
                     "type": "integer",
@@ -154,28 +174,30 @@
                 "message": {
                     "type": "string"
                 }
-            }
-        },
-        "Ok<Page<Pet>>": {
-            "type": "object",
+            },
             "required": [
-                "items",
-                "nextLink"
-            ],
+                "code",
+                "message"
+            ]
+        },
+        "Ok-of-Page-of-Pet": {
+            "type": "object",
             "properties": {
                 "items": {
-                    "$ref": "#/parameters/Pet[]"
+                    "$ref": "#/definitions/Pet-array"
                 },
                 "nextLink": {
                     "type": "string"
                 }
-            }
-        },
-        "Ok<Pet>": {
-            "type": "object",
+            },
             "required": [
-                "name"
+                "items",
+                "nextLink"
             ],
+            "x-adl-name": "Ok<Page<Pet>>"
+        },
+        "Ok-of-Pet": {
+            "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
@@ -183,13 +205,14 @@
                 "tag": {
                     "type": "string"
                 }
-            }
-        },
-        "NotModified<Pet>": {
-            "type": "object",
+            },
             "required": [
                 "name"
             ],
+            "x-adl-name": "Ok<Pet>"
+        },
+        "NotModified-of-Pet": {
+            "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
@@ -197,13 +220,14 @@
                 "tag": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "name"
+            ],
+            "x-adl-name": "NotModified<Pet>"
         },
         "Pet": {
             "type": "object",
-            "required": [
-                "name"
-            ],
             "properties": {
                 "name": {
                     "type": "string"
@@ -211,79 +235,96 @@
                 "tag": {
                     "type": "string"
                 }
-            }
-        },
-        "Ok<Page<Toy>>": {
-            "type": "object",
+            },
             "required": [
-                "items",
-                "nextLink"
-            ],
+                "name"
+            ]
+        },
+        "Ok-of-Page-of-Toy": {
+            "type": "object",
             "properties": {
                 "items": {
-                    "$ref": "#/parameters/Toy[]"
+                    "$ref": "#/definitions/Toy-array"
                 },
                 "nextLink": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "items",
+                "nextLink"
+            ],
+            "x-adl-name": "Ok<Page<Toy>>"
         },
-        "Pet[]": {
-            "type": "Array",
+        "Pet-array": {
+            "type": "array",
             "items": {
-                "$ref": "#/parameters/Pet"
-            }
+                "$ref": "#/definitions/Pet"
+            },
+            "x-adl-name": "Pet[]"
         },
-        "Toy[]": {
-            "type": "Array",
+        "Toy-array": {
+            "type": "array",
             "items": {
-                "$ref": "#/parameters/Toy"
-            }
+                "$ref": "#/definitions/Toy"
+            },
+            "x-adl-name": "Toy[]"
         },
         "Toy": {
             "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "petId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
             "required": [
                 "id",
                 "petId",
                 "name"
-            ],
-            "properties": {
-                "id": {
-                    "type": "number"
-                },
-                "petId": {
-                    "type": "number"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
+            ]
         }
     },
     "parameters": {
+        "petId": {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+        },
         "nextLink": {
             "name": "nextLink",
             "in": "query",
-            "requred": false,
-            "schema": {
-                "type": "string"
-            }
+            "required": false,
+            "type": "string"
         },
         "pet": {
             "name": "pet",
             "in": "body",
-            "requred": true,
+            "required": true,
             "schema": {
-                "$ref": "#/parameters/Pet"
+                "$ref": "#/definitions/Pet"
             }
+        },
+        "petId-0": {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "type": "string"
         },
         "nameFilter": {
             "name": "nameFilter",
             "in": "query",
-            "requred": true,
-            "schema": {
-                "type": "string"
-            }
+            "required": true,
+            "type": "string"
         }
     }
 }
