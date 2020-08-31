@@ -1,0 +1,289 @@
+{
+    "swagger": "2.0",
+    "info": {},
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/pets/{petId}": {
+            "delete": {
+                "summary": "Delete a pet.",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Ok<(anonymous model)>"
+                        }
+                    },
+                    "default": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Error"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Returns a pet. Supports eTags.",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Ok<Pet>"
+                        }
+                    },
+                    "default": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pets": {
+            "get": {
+                "summary": "<blink>list pets</blink>",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/nextLink"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Ok<Page<Pet>>"
+                        }
+                    },
+                    "default": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pet"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Ok<Pet>"
+                        }
+                    },
+                    "default": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pets/{petId}/toys": {
+            "get": {
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/nameFilter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Ok<Page<Toy>>"
+                        }
+                    },
+                    "default": {
+                        "headers": {},
+                        "schema": {
+                            "$ref": "#/parameters/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Ok<(anonymous model)>": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+        },
+        "Error": {
+            "type": "object",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "Ok<Page<Pet>>": {
+            "type": "object",
+            "required": [
+                "items",
+                "nextLink"
+            ],
+            "properties": {
+                "items": {
+                    "$ref": "#/parameters/Pet[]"
+                },
+                "nextLink": {
+                    "type": "string"
+                }
+            }
+        },
+        "Ok<Pet>": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "NotModified<Pet>": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "Pet": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "Ok<Page<Toy>>": {
+            "type": "object",
+            "required": [
+                "items",
+                "nextLink"
+            ],
+            "properties": {
+                "items": {
+                    "$ref": "#/parameters/Toy[]"
+                },
+                "nextLink": {
+                    "type": "string"
+                }
+            }
+        },
+        "Pet[]": {
+            "type": "Array",
+            "items": {
+                "$ref": "#/parameters/Pet"
+            }
+        },
+        "Toy[]": {
+            "type": "Array",
+            "items": {
+                "$ref": "#/parameters/Toy"
+            }
+        },
+        "Toy": {
+            "type": "object",
+            "required": [
+                "id",
+                "petId",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "petId": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "nextLink": {
+            "name": "nextLink",
+            "in": "query",
+            "requred": false,
+            "schema": {
+                "type": "string"
+            }
+        },
+        "pet": {
+            "name": "pet",
+            "in": "body",
+            "requred": true,
+            "schema": {
+                "$ref": "#/parameters/Pet"
+            }
+        },
+        "nameFilter": {
+            "name": "nameFilter",
+            "in": "query",
+            "requred": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    }
+}
