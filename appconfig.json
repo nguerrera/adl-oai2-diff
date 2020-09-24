@@ -18,31 +18,41 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/name"
+                        "name": "after",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/after"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-KeyPage"
+                            "$ref": "#/definitions/KeyPage"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -61,31 +71,43 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/name"
+                        "name": "after",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/after"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                            "type": "object",
+                            "properties": {},
+                            "x-adl-name": "{}"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -104,37 +126,78 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "After",
+                        "in": "query",
+                        "required": true,
+                        "description": "Instructs the server to return elements that appear after the element referred to by the specified token.",
+                        "type": "string",
+                        "format": "date"
                     },
                     {
-                        "$ref": "#/parameters/key"
+                        "name": "$Select",
+                        "in": "query",
+                        "required": false,
+                        "description": "Used to select what fields are present in the returned resource(s).",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "key",
+                                "label",
+                                "content_type",
+                                "value",
+                                "last_modified",
+                                "tags"
+                            ]
+                        }
                     },
                     {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     },
                     {
-                        "$ref": "#/parameters/After"
+                        "$ref": "#/parameters/KeyFilters.key"
                     },
                     {
-                        "$ref": "#/parameters/_Select"
+                        "$ref": "#/parameters/KeyFilters.label"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-Page-of-KeyValue"
+                            "type": "object",
+                            "properties": {
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/KeyValue"
+                                    },
+                                    "x-adl-name": "KeyValue[]"
+                                },
+                                "nextLink": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "items",
+                                "nextLink"
+                            ],
+                            "x-adl-name": "Page<KeyValue>"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -153,37 +216,63 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "After",
+                        "in": "query",
+                        "required": true,
+                        "description": "Instructs the server to return elements that appear after the element referred to by the specified token.",
+                        "type": "string",
+                        "format": "date"
                     },
                     {
-                        "$ref": "#/parameters/key"
+                        "name": "$Select",
+                        "in": "query",
+                        "required": false,
+                        "description": "Used to select what fields are present in the returned resource(s).",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "key",
+                                "label",
+                                "content_type",
+                                "value",
+                                "last_modified",
+                                "tags"
+                            ]
+                        }
                     },
                     {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     },
                     {
-                        "$ref": "#/parameters/After"
+                        "$ref": "#/parameters/KeyFilters.key"
                     },
                     {
-                        "$ref": "#/parameters/_Select"
+                        "$ref": "#/parameters/KeyFilters.label"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                            "type": "object",
+                            "properties": {},
+                            "x-adl-name": "{}"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -202,40 +291,66 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/ifMatch"
+                        "name": "$Select",
+                        "in": "query",
+                        "required": false,
+                        "description": "Used to select what fields are present in the returned resource(s).",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "key",
+                                "label",
+                                "content_type",
+                                "value",
+                                "last_modified",
+                                "tags"
+                            ]
+                        }
                     },
                     {
-                        "$ref": "#/parameters/ifNoneMatch"
+                        "$ref": "#/parameters/ETagHeaders.ifMatch"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "$ref": "#/parameters/ETagHeaders.ifNoneMatch"
                     },
                     {
-                        "$ref": "#/parameters/key-0"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     },
                     {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/KeyWithFilters.key"
                     },
                     {
-                        "$ref": "#/parameters/_Select"
+                        "$ref": "#/parameters/KeyWithFilters.label"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-KeyValueHeaders-plus-KeyValue"
+                            "$ref": "#/definitions/KeyValue"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            },
+                            "last-modified": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "e-tag": {
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -252,31 +367,53 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/key-0"
+                        "name": "ifMatch",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/KeyWithFilters.key"
                     },
                     {
-                        "$ref": "#/parameters/ifMatch"
+                        "$ref": "#/parameters/KeyWithFilters.label"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-KeyValueHeaders-plus-KeyValue"
+                            "$ref": "#/definitions/KeyValue"
+                        },
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            },
+                            "last-modified": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "e-tag": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "304": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {},
+                            "x-adl-name": "{}"
                         },
                         "description": ""
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -295,37 +432,47 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/ifMatch"
+                        "$ref": "#/parameters/ETagHeaders.ifMatch"
                     },
                     {
-                        "$ref": "#/parameters/ifNoneMatch"
+                        "$ref": "#/parameters/ETagHeaders.ifNoneMatch"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     },
                     {
-                        "$ref": "#/parameters/key-0"
+                        "$ref": "#/parameters/KeyWithFilters.key"
                     },
                     {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/KeyWithFilters.label"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-LastModifiedHeader"
+                            "type": "object",
+                            "properties": {},
+                            "x-adl-name": "{}"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            },
+                            "last-modified": {
+                                "type": "string",
+                                "format": "date"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -345,40 +492,66 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/ifMatch"
+                        "name": "contentType",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "application/json-patch+json"
+                        ]
                     },
                     {
-                        "$ref": "#/parameters/ifNoneMatch"
+                        "name": "jsonPatch",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "x-adl-name": "string[]"
+                        }
                     },
                     {
-                        "$ref": "#/parameters/key-0"
+                        "$ref": "#/parameters/ETagHeaders.ifMatch"
                     },
                     {
-                        "$ref": "#/parameters/label"
+                        "$ref": "#/parameters/ETagHeaders.ifNoneMatch"
                     },
                     {
-                        "$ref": "#/parameters/contentType"
+                        "$ref": "#/parameters/KeyWithFilters.key"
                     },
                     {
-                        "$ref": "#/parameters/jsonPatch"
+                        "$ref": "#/parameters/KeyWithFilters.label"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-KeyValueHeaders-plus-KeyValue"
+                            "$ref": "#/definitions/KeyValue"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            },
+                            "last-modified": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "e-tag": {
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -397,31 +570,41 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/name-0"
+                        "name": "after",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/after-0"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-LabelPage"
+                            "$ref": "#/definitions/LabelPage"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -440,34 +623,55 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/name-0"
+                        "name": "after",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/after-0"
+                        "name": "$Select",
+                        "in": "query",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "name"
+                            ]
+                        }
                     },
                     {
-                        "$ref": "#/parameters/_Select-0"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                            "type": "object",
+                            "properties": {},
+                            "x-adl-name": "{}"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -484,34 +688,44 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/key-1"
+                        "name": "key",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/label-0"
+                        "name": "label",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/ifMatch"
+                        "$ref": "#/parameters/ETagHeaders.ifMatch"
                     },
                     {
-                        "$ref": "#/parameters/ifNoneMatch"
+                        "$ref": "#/parameters/ETagHeaders.ifNoneMatch"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-KeyValue"
+                            "$ref": "#/definitions/KeyValue"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -526,34 +740,44 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/key-1"
+                        "name": "key",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/label-0"
+                        "name": "label",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/ifMatch"
+                        "$ref": "#/parameters/ETagHeaders.ifMatch"
                     },
                     {
-                        "$ref": "#/parameters/ifNoneMatch"
+                        "$ref": "#/parameters/ETagHeaders.ifNoneMatch"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-KeyValue"
+                            "$ref": "#/definitions/KeyValue"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -572,34 +796,78 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "$Select",
+                        "in": "query",
+                        "required": false,
+                        "description": "Used to select what fields are present in the returned resource(s).",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "key",
+                                "label",
+                                "content_type",
+                                "value",
+                                "last_modified",
+                                "tags"
+                            ]
+                        }
                     },
                     {
-                        "$ref": "#/parameters/_Select"
+                        "name": "label",
+                        "in": "query",
+                        "required": true,
+                        "description": "A filter used to match labels",
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/label-1"
+                        "name": "key",
+                        "in": "query",
+                        "required": true,
+                        "description": "A filter used to match keys.",
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/key-2"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader-plus-Page-of-KeyValue"
+                            "type": "object",
+                            "properties": {
+                                "items": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/KeyValue"
+                                    },
+                                    "x-adl-name": "KeyValue[]"
+                                },
+                                "nextLink": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "items",
+                                "nextLink"
+                            ],
+                            "x-adl-name": "Page<KeyValue>"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -618,31 +886,43 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/apiVersion"
+                        "$ref": "#/parameters/ServiceParams"
                     },
                     {
-                        "$ref": "#/parameters/syncToken"
+                        "$ref": "#/parameters/SyncTokenHeader"
                     },
                     {
-                        "$ref": "#/parameters/acceptDatetime"
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/name"
+                        "name": "after",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/after-1"
+                        "$ref": "#/parameters/AcceptDatetimeHeader"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "headers": {},
                         "schema": {
-                            "$ref": "#/definitions/Ok-of-SyncTokenHeader"
+                            "type": "object",
+                            "properties": {},
+                            "x-adl-name": "{}"
                         },
-                        "description": ""
+                        "description": "Success",
+                        "headers": {
+                            "sync-token": {
+                                "description": "Used to guarantee real-time consistency between requests.",
+                                "type": "string"
+                            }
+                        }
                     },
                     "default": {
-                        "headers": {},
                         "schema": {
                             "$ref": "#/definitions/Error"
                         },
@@ -653,11 +933,15 @@
         }
     },
     "definitions": {
-        "Ok-of-SyncTokenHeader-plus-KeyPage": {
+        "KeyPage": {
             "type": "object",
             "properties": {
                 "items": {
-                    "$ref": "#/definitions/Key-array"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Key"
+                    },
+                    "x-adl-name": "Key[]"
                 },
                 "nextLink": {
                     "type": "string"
@@ -666,8 +950,7 @@
             "required": [
                 "items",
                 "nextLink"
-            ],
-            "x-adl-name": "Ok<SyncTokenHeader & KeyPage>"
+            ]
         },
         "Error": {
             "type": "object",
@@ -703,35 +986,27 @@
                 "statusCode"
             ]
         },
-        "Ok-of-SyncTokenHeader": {
+        "KeyValue": {
             "type": "object",
             "properties": {},
-            "x-adl-name": "Ok<SyncTokenHeader>"
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Key"
+                },
+                {
+                    "$ref": "#/definitions/Value"
+                }
+            ]
         },
-        "key-or-label-or-content_type-or-value-or-last_modified-or-tags-array": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/key-or-label-or-content_type-or-value-or-last_modified-or-tags"
-            },
-            "x-adl-name": "key | label | content_type | value | last_modified | tags[]"
-        },
-        "key-or-label-or-content_type-or-value-or-last_modified-or-tags": {
-            "type": "string",
-            "enum": [
-                "key",
-                "label",
-                "content_type",
-                "value",
-                "last_modified",
-                "tags"
-            ],
-            "x-adl-name": "key | label | content_type | value | last_modified | tags"
-        },
-        "Ok-of-SyncTokenHeader-plus-Page-of-KeyValue": {
+        "LabelPage": {
             "type": "object",
             "properties": {
                 "items": {
-                    "$ref": "#/definitions/KeyValue-array"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Label"
+                    },
+                    "x-adl-name": "Label[]"
                 },
                 "nextLink": {
                     "type": "string"
@@ -740,134 +1015,7 @@
             "required": [
                 "items",
                 "nextLink"
-            ],
-            "x-adl-name": "Ok<SyncTokenHeader & Page<KeyValue>>"
-        },
-        "Ok-of-KeyValueHeaders-plus-KeyValue": {
-            "type": "object",
-            "properties": {
-                "key": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "tags": {
-                    "$ref": "#/definitions/Map-of-string-and-string"
-                },
-                "locked": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "key",
-                "tags",
-                "locked"
-            ],
-            "x-adl-name": "Ok<KeyValueHeaders & KeyValue>"
-        },
-        "Ok-of-SyncTokenHeader-plus-LastModifiedHeader": {
-            "type": "object",
-            "properties": {},
-            "x-adl-name": "Ok<SyncTokenHeader & LastModifiedHeader>"
-        },
-        "string-array": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "x-adl-name": "string[]"
-        },
-        "NoContent-of-_anonymous_model_": {
-            "type": "object",
-            "properties": {},
-            "x-adl-name": "NoContent<(anonymous model)>"
-        },
-        "Ok-of-SyncTokenHeader-plus-LabelPage": {
-            "type": "object",
-            "properties": {
-                "items": {
-                    "$ref": "#/definitions/Label-array"
-                },
-                "nextLink": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "items",
-                "nextLink"
-            ],
-            "x-adl-name": "Ok<SyncTokenHeader & LabelPage>"
-        },
-        "name-array": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "enum": [
-                    "name"
-                ]
-            },
-            "x-adl-name": "name[]"
-        },
-        "Ok-of-SyncTokenHeader-plus-KeyValue": {
-            "type": "object",
-            "properties": {
-                "key": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "tags": {
-                    "$ref": "#/definitions/Map-of-string-and-string"
-                },
-                "locked": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "key",
-                "tags",
-                "locked"
-            ],
-            "x-adl-name": "Ok<SyncTokenHeader & KeyValue>"
-        },
-        "Key-array": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/Key"
-            },
-            "x-adl-name": "Key[]"
-        },
-        "KeyValue-array": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/KeyValue"
-            },
-            "x-adl-name": "KeyValue[]"
-        },
-        "Map-of-string-and-string": {
-            "type": "object",
-            "properties": {
-                "k": {
-                    "type": "string"
-                },
-                "v": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "k",
-                "v"
-            ],
-            "x-adl-name": "Map<string, string>"
-        },
-        "Label-array": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/Label"
-            },
-            "x-adl-name": "Label[]"
+            ]
         },
         "Key": {
             "type": "object",
@@ -880,24 +1028,33 @@
                 "key"
             ]
         },
-        "KeyValue": {
+        "Value": {
             "type": "object",
             "properties": {
-                "key": {
-                    "type": "string"
-                },
                 "label": {
                     "type": "string"
                 },
                 "tags": {
-                    "$ref": "#/definitions/Map-of-string-and-string"
+                    "type": "object",
+                    "properties": {
+                        "k": {
+                            "type": "string"
+                        },
+                        "v": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "k",
+                        "v"
+                    ],
+                    "x-adl-name": "Map<string, string>"
                 },
                 "locked": {
                     "type": "boolean"
                 }
             },
             "required": [
-                "key",
                 "tags",
                 "locked"
             ]
@@ -915,168 +1072,64 @@
         }
     },
     "parameters": {
-        "apiVersion": {
+        "ServiceParams": {
             "name": "apiVersion",
             "in": "query",
             "required": true,
             "type": "string"
         },
-        "syncToken": {
+        "SyncTokenHeader": {
             "name": "syncToken",
             "in": "header",
             "required": false,
             "description": "Used to guarantee real-time consistency between requests.",
             "type": "string"
         },
-        "acceptDatetime": {
+        "AcceptDatetimeHeader": {
             "name": "acceptDatetime",
             "in": "header",
             "required": true,
             "type": "string",
             "format": "date"
         },
-        "name": {
-            "name": "name",
-            "in": "query",
-            "required": true,
-            "type": "string"
-        },
-        "after": {
-            "name": "after",
-            "in": "header",
-            "required": true,
-            "type": "string"
-        },
-        "key": {
+        "KeyFilters.key": {
             "name": "key",
             "in": "query",
             "required": false,
             "description": "A filter for the name of the returned keys.",
             "type": "string"
         },
-        "label": {
+        "KeyFilters.label": {
             "name": "label",
             "in": "query",
             "required": false,
             "description": "A filter used to match labels",
             "type": "string"
         },
-        "After": {
-            "name": "After",
-            "in": "query",
-            "required": true,
-            "description": "Instructs the server to return elements that appear after the element referred to by the specified token.",
-            "type": "string",
-            "format": "date"
-        },
-        "_Select": {
-            "name": "$Select",
-            "in": "query",
-            "required": false,
-            "description": "Used to select what fields are present in the returned resource(s).",
-            "type": "array",
-            "items": {
-                "type": "string",
-                "enum": [
-                    "key",
-                    "label",
-                    "content_type",
-                    "value",
-                    "last_modified",
-                    "tags"
-                ]
-            }
-        },
-        "ifMatch": {
+        "ETagHeaders.ifMatch": {
             "name": "ifMatch",
             "in": "header",
             "required": true,
             "type": "string"
         },
-        "ifNoneMatch": {
+        "ETagHeaders.ifNoneMatch": {
             "name": "ifNoneMatch",
             "in": "header",
             "required": true,
             "type": "string"
         },
-        "key-0": {
+        "KeyWithFilters.key": {
             "name": "key",
             "in": "path",
             "required": true,
             "description": "A filter for the name of the returned keys.",
             "type": "string"
         },
-        "contentType": {
-            "name": "contentType",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "enum": [
-                "application/json-patch+json"
-            ]
-        },
-        "jsonPatch": {
-            "name": "jsonPatch",
-            "in": "body",
-            "required": true,
-            "schema": {
-                "$ref": "#/definitions/string-array"
-            }
-        },
-        "name-0": {
-            "name": "name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-        },
-        "after-0": {
-            "name": "after",
-            "in": "query",
-            "required": false,
-            "type": "string"
-        },
-        "_Select-0": {
-            "name": "$Select",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-                "type": "string",
-                "enum": [
-                    "name"
-                ]
-            }
-        },
-        "key-1": {
-            "name": "key",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
-        "label-0": {
+        "KeyWithFilters.label": {
             "name": "label",
             "in": "query",
-            "required": true,
-            "type": "string"
-        },
-        "label-1": {
-            "name": "label",
-            "in": "query",
-            "required": true,
+            "required": false,
             "description": "A filter used to match labels",
-            "type": "string"
-        },
-        "key-2": {
-            "name": "key",
-            "in": "query",
-            "required": true,
-            "description": "A filter used to match keys.",
-            "type": "string"
-        },
-        "after-1": {
-            "name": "after",
-            "in": "query",
-            "required": true,
             "type": "string"
         }
     }
